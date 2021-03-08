@@ -1,4 +1,4 @@
-∑#!/usr/bin/env python
+#!/usr/bin/env python
 
 import sys, re
 from argparse import ArgumentParser
@@ -11,23 +11,27 @@ if len(sys.argv) == 1:
     parser.print_help()
     sys.exit(1)
 
-args = parser.parse_args()		#collects argument
+args = parser.parse_args()	#collects argument
 
-args.seq = args.seq.upper()                 # Note we just added this 
+args.seq = args.seq.upper()    # Converts into uppercase in case needed 
 if re.search('^[ACGTU]+$', args.seq):
-    if re.search('T', args.seq):		#if there is a T the seq is DNA
+    if re.search('T', args.seq) and not re.search('U', args.seq):	#if there is T and no U the seq is DNA
         print ('The sequence is DNA')
-    elif re.search('U', args.seq):
-        print ('The sequence is RNA')		#if there is a U it has to be RNA
+    elif re.search('U', args.seq)and not re.search('T', args.seq):
+        print ('The sequence is RNA')	#if there is U and no T it is  RNA
     else:
-        print ('The sequence can be DNA or RNA')
+        print ('The sequence can be DNA or RNA') #There are no U or T bases in the query seq
 else:
     print ('The sequence is not DNA nor RNA')
+
 if args.motif:
   args.motif = args.motif.upper()
-  print(f'Motif search enabled: looking for motif "{args.motif}" in sequence "{args.seq}"... ', end = '')
-  if re.match(args.motif, args.seq):
-    print("FOUND in sequence")
+  print("Motif search enabled: looking for motif {args.motif} in sequence {args.seq}...")
+  #previous line modified in order to avoid syntax errors
+  if re.search(args.motif, args.seq):
+  #changed match for search: if the motif has to match the sequence, it does not make sense...
+    print("The motif is FOUND in the sequence")
   else:
-    print("NOT FOUND in the sequence")
+    print("The motif is NOT FOUND in the sequence")
+
 
