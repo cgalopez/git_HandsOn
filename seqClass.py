@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+∑#!/usr/bin/env python
 
 import sys, re
 from argparse import ArgumentParser
@@ -11,14 +11,14 @@ if len(sys.argv) == 1:
     parser.print_help()
     sys.exit(1)
 
-args = parser.parse_args()
+args = parser.parse_args()		#collects argument
 
 args.seq = args.seq.upper()                 # Note we just added this 
 if re.search('^[ACGTU]+$', args.seq):
-    if re.search('T', args.seq):
+    if re.search('T', args.seq):		#if there is a T the seq is DNA
         print ('The sequence is DNA')
     elif re.search('U', args.seq):
-        print ('The sequence is RNA')
+        print ('The sequence is RNA')		#if there is a U it has to be RNA
     else:
         print ('The sequence can be DNA or RNA')
 else:
