@@ -29,5 +29,5 @@ if args.motif:
   if re.match(args.motif, args.seq):
     print("FOUND in sequence")
   else:
-    print("NOT FOUND")
+    print("NOT FOUND in the sequence")
 
