@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#The script was corrected in another branch called fix which was merged with master once script performed well
 
 import sys, re
 from argparse import ArgumentParser
